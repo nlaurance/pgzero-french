@@ -13,8 +13,7 @@ Vérifie que cela démarre et ouvre une fenêtre vide en utilisant la commande :
 
     pgzrun intro.py
 
-Tout dans Pygame Zero est optionel: un fichier vide est un programme valide en
-Pygame Zero!
+Tout dans Pygame Zero est optionel: un fichier vide est un programme Pygame Zero valide !
 
 Tu peux quitter le jeu en cliquant sur le bouton de fermeture de la fenêtre ou en pressant les touches
 ``Ctrl-Q`` (``⌘-Q`` sur Mac). Si le jeu se bloque pour une raison indéterminée, tu
@@ -35,7 +34,7 @@ Dans ``intro.py``, ajoute ce qui suit::
     def draw():
         screen.fill((128, 0, 0))
 
-Relance ``pgzrun intro.py`` et l'écran devrait maintenant afficher un carré rouge!
+Relance ``pgzrun intro.py`` et l'écran devrait maintenant afficher un carré rouge !
 
 Que fait ce programme??
 
@@ -60,7 +59,7 @@ cliquer avec le bouton de droite sur celle ci-dessous et l'enregistrer ("Enregis
 
 .. image:: _static/alien.png
 
-(Cette image a un canal de transparence, ou "alpha", qui est super pour les jeux!
+(Cette image a un canal de transparence, ou "alpha", qui est super pour les jeux !
 Mais elle est conçue pour un arrière-plan sombre, il se peut donc que tu ne vois pas
 le casque de l'espace de l'extraterrestre avant qu'il soit affiché dans le jeu).
 
@@ -74,7 +73,7 @@ le casque de l'espace de l'extraterrestre avant qu'il soit affiché dans le jeu)
 Tu dois enregistrer le fichier au bon endroit pour que Pygame Zero puisse le trouver.
 Crée un répertoire appelé ``images`` et enregistre l'image à l'intérieur en l'appelant
 ``alien.png``. Les noms de fichiers doivent être en minuscule, sinon Pygame Zero va se plaindre
-en t'alertant d'un risque potentiel de compatibilité sur certaines plateformes.
+en t'alertant d'un risque potentiel d'incompatibilité sur certaines plateformes.
 
 Si tu as fait tout cela, ton projet devrait ressembler à ceci:
 
@@ -90,7 +89,7 @@ Si tu as fait tout cela, ton projet devrait ressembler à ceci:
 Il y a une classe pré-définie appelée :class:`Actor` que tu peux utiliser pour representer
 une image (*sprite*) qui doit être dessinée à l'écran.
 
-Définissons-en une maintenant. Change le fichier ``intro.py`` afin qu'il contienne::
+Définissons-en une maintenant. Change le fichier ``intro.py`` afin qu'il contienne ::
 
     alien = Actor('alien')
     alien.pos = 100, 56
@@ -102,10 +101,10 @@ Définissons-en une maintenant. Change le fichier ``intro.py`` afin qu'il contie
         screen.clear()
         alien.draw()
 
-Ton extraterrestre devrait maintenant apparaître à l'écran! En donnant la chaîne ``'alien'`` 
+Ton extraterrestre devrait maintenant apparaître à l'écran ! En donnant la chaîne ``'alien'``
 à la classe ``Actor``, il charge automatiquement l'image correspondante. L'objet obtenu a des attributs
 comme la position et la taille. Ceci nous permet de définir la hauteur de la fenêtre (``HEIGHT``) 
-basée sur la hauteur de l'alien.
+basée sur la hauteur de l'extraterrestre.
 
 La méthode ``alien.draw()`` dessine le *sprite* sur l'écran à sa position courante.
 
@@ -144,24 +143,24 @@ avons besoin de définir une fonction appelée :func:`on_mouse_down`. Ajoute ce 
 
     def on_mouse_down(pos):
         if alien.collidepoint(pos):
-            print("Eek!")
+            print("Eek !")
         else:
-            print("Tu m'as manqué!")
+            print("Tu m'as manqué !")
 
-Tu peux démarrer le jeu et essayer de cliquer sur et à côté de l'extraterrestre.
+Tu peux démarrer le jeu et essayer de cliquer sur l'extraterrestre et à côté.
 
 Pygame Zero est intelligent dans la façon d'appeler tes fonctions. Si tu ne définis pas
 ta fonction avec un parametre ``pos``, Pygame Zero va l'appeler sans position.
 Il y a aussi un parametre ``button`` pour ``on_mouse_down``. Nous aurions pu écrire::
 
     def on_mouse_down():
-        print("Tu cliques!")
+        print("Tu cliques !")
 
 ou::
 
     def on_mouse_down(pos, button):
         if button == mouse.LEFT and alien.collidepoint(pos):
-            print("Tu m'as touché!")
+            print("Tu m'as touché !")
 
 
 
@@ -190,14 +189,14 @@ Ton projet doit maintenant ressembler à ceci:
 ``sounds/`` est un répertoire standard dans lequel Pygame Zero va chercher
 tes fichiers audios.
 
-Mantenant changeons la fonction ``on_mouse_down`` pour utiliser ces nouvelles ressources::
+Mantenant changeons la fonction ``on_mouse_down`` pour utiliser ces nouvelles ressources ::
 
     def on_mouse_down(pos):
         if alien.collidepoint(pos):
             alien.image = 'alien_hurt'
             sounds.eep.play()
 
-Maintenant quand tu cliques sur l'alien, tu devrais entendre un son et le *sprite* devrait
+Maintenant, quand tu cliques sur l'extraterrestre, tu devrais entendre un son et le *sprite* devrait
 se changer en un extraterrestre pas content.
 
 Il y a cependant un bogue dans le jeu, l'extraterrestre ne redevient jamais
@@ -209,7 +208,7 @@ L'horloge
 
 Si tu es habitué à Python en dehors de la programmation de jeux, tu peux connaitre
 la méthode ``time.sleep()`` qui attend un certain délai. Tu peux être tenté d'écrire
-ton programme comme suit::
+ton programme comme suit ::
 
     def on_mouse_down(pos):
         if alien.collidepoint(pos):
@@ -220,7 +219,7 @@ ton programme comme suit::
 
 Malheureusement, cela n'est pas utilisable dans un jeu. ``time.sleep()``
 bloque toute activité, nous voulons que le jeu continue de fonctionner et de s'animer.
-En fait nous devons retourner de la fonction ``on_mouse_down`` et laisser le jeu calculer quand
+En fait nous devons sortir de la fonction ``on_mouse_down`` et laisser le jeu décider quand
 réinitialiser l'extraterrestre au cours de son activité normale, tout en continuant d'appeler vos
 fonctions ``draw()`` et ``update()``.
 
@@ -243,16 +242,16 @@ définir l'apparence de l'extraterrestre blessé et aussi le remettre dans son �
     def set_alien_normal():
         alien.image = 'alien'
 
-Cela ne vas rien changer pour l'instant. ``set_alien_normal()`` ne va pas être appelée.
+Cela ne va rien changer pour l'instant. ``set_alien_normal()`` n'est pas appelée.
 Mais changeons ``set_alien_hurt()`` en utilisant l'horloge afin que
-``set_alien_normal()`` soit appeler un moment plus tard. ::
+``set_alien_normal()`` soit appelée un moment plus tard. ::
 
     def set_alien_hurt():
         alien.image = 'alien_hurt'
         sounds.eep.play()
         clock.schedule_unique(set_alien_normal, 0.5)
 
-``clock.schedule_unique()`` va faire en sorte que ``set_alien_normal()`` soit appelé
+``clock.schedule_unique()`` va faire en sorte que ``set_alien_normal()`` soit appelée
 après ``0.5`` seconde. ``schedule_unique()`` empêche aussi que l'appel à la même fonction
 soit ordonnancé plus d'une fois, comme quand par exemple tu cliques très rapidemment.
 
@@ -261,17 +260,17 @@ de cliquer rapidemment et vérifie que l'extraterrestre ne revienne dans l'état
 après le dernier clic.
 
 ``clock.schedule_unique()`` accepte comme intervalle de temps à la fois des entiers et des décimaux.
-Dans ce tutorial nous utilisons un nombre décimal pour l'illustrer mais
+Dans ce tutoriel nous utilisons un nombre décimal pour l'illustrer mais
 essaye d'utiliser les deux pour voir l'effet que produit chaque valeur.
 
 
 Résumé
 ------
 
-Nous avons vu comment charger et dessiner des *sprites*, jouers des sons,
+Nous avons vu comment charger et dessiner des *sprites*, jouer des sons,
 gérer les actions de l'utilisateur et utiliser une horloge pré-définie.
 
-Tu peux maintenant vouloir améliorer le jeu pour comptabiliser le score ou faire bouger
+Tu voudrais sûrement améliorer le jeu pour compter les points ou faire bouger
 l'extraterrestre de façon plus erratique.
 
 Il y a encore plus de fonctionnalités qui font que Pygame Zero est facile à utiliser.
