@@ -1,7 +1,7 @@
-Built-in Objects
-================
+Objets pré-définis
+==================
 
-Pygame Zero provides useful built-in objects to help you make games easily.
+Pygame Zero fournit des objets pré-définis utiles pour t'aider à construire des jeux facilement.
 
 
 .. _screen:

@@ -3,17 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Pygame Zero
-======================
+Bienvenue à Pygame Zero
+=======================
 
-Pygame Zero is for creating games without boilerplate.
+Pygame Zero permet de créer des jeux de façon simple et intuitive.
 
-It is intended for use in education, so that teachers can teach basic
-programming without needing to explain the Pygame API or write an event loop.
+Il est destiné à être utilisé dans l'éducation, afin que les professeurs puissent enseigner les bases
+de la programmation sans avoir besoin d'expliquer l':abbr:`API (Application Programming Interface)` de Pygame ni d'écrire une boucle d'événements.
 
 
-Courses
--------
+Les cours
+---------
 
 .. toctree::
     :maxdepth: 2
